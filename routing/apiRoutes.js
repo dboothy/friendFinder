@@ -8,15 +8,20 @@ module.exports = function(app) {
 	});
 
 	app.post("/api/friends", function(req, res) {
-
-		if(friendsData.length < 1){
-			friendsData.push(req.body);
-			res.json(true);
-		}
-		else {
-			friendsData.push(req.body);
-			res.json(false);
-		}
+	console.log("post")
+	console.log(req.body)
+		var userData = req.body;
+		var scores = [];
+		userData.added = true
+		res.json(userData)
+		// if(friendsData.length < 1){
+		// 	friendsData.push(req.body);
+		// 	res.json(userData);
+		// }
+		// else {
+		// 	friendsData.push(req.body);
+		// 	res.json(false);
+		// }
 	});
 
 	app.post("/api/clear", function(){
