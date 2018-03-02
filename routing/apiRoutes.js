@@ -12,8 +12,11 @@ module.exports = function(app) {
 	console.log(req.body)
 		var userData = req.body;
 		var scores = [];
-		userData.added = true
+		
 		res.json(userData)
+
+		friendsData.push(req.body)
+		res.JSON(friendsData)
 		// if(friendsData.length < 1){
 		// 	friendsData.push(req.body);
 		// 	res.json(userData);

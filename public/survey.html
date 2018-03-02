@@ -36,7 +36,7 @@
       <option value="5">5 (Strongly Agree)</option>
     </select>
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q1_chosen"></div>
-
+<!-- 
     <h3>
       <strong>Question 2</strong>
     </h3>
@@ -81,7 +81,7 @@
       <option value="5">5 (Strongly Agree)</option>
     </select>
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q4_chosen"></div>
-<!-- 
+
     <h3>
       <strong>Question 5</strong>
     </h3>
@@ -171,11 +171,11 @@
       <option value="4">4</option>
       <option value="5">5 (Strongly Agree)</option>
     </select>
-    <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q10_chosen"></div> -->
+    <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q10_chosen"></div>
     <br>
-    <br>
-  <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
-    <i class="fa fa-check-circle"></i>
+    <br> -->
+  <button type="submit" data-toggle="modal" data-target="#results-modal" class="btn btn-primary btn-lg btn-block" id="submit">
+    <i class="glyphicon glyphicon-check"></i>
   </button>
   <hr>
   
@@ -192,7 +192,9 @@
         </h2>
          </div>
       <div class="modal-body">
-        <h2 id = "match-name"></h2>
+<!--         <h2 id = "match-name"></h2>
+        <img id= "match-img"></div> -->
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -233,6 +235,8 @@ event.preventDefault();
 if (validateForm()) {
 var tempData =  $(".container").serializeArray()
 
+console.log(tempData)
+
 userData ={
   name: tempData[0].value,
   photo: tempData[1].value,
@@ -249,20 +253,55 @@ console.log(userData)
 $.post("/api/friends", JSON.stringify(userData), 
   function(data){
   
-  friendsArray.push(data)
-  $("#match-name").text(data.name);
-  $("#match-img").attr("src", data.photo);
 
-  $("#results-modal").modal("toggle");
+  // $("#match-name").text(data.name);
+  // $("#match-img").attr("src", data.photo);
+ 
 
   });
 
 
 });
+  
+
+  function friendResults() {
+
+    
+    var currentURL = window.location.origin;
+
+
+    $.ajax({ url: currentURL + "/api/friends", method: "GET" })
+    .then(function(friendsData) {
+      console.log("------------------------------------");
+      console.log("URL: " + currentURL + "/api/friends");
+      console.log("------------------------------------");
+
+      console.log(friendsData);
+      console.log("------------------------------------");
+
+        var matchName = $("<h2>");
+        matchName.text(friendsData.name);
+
+        var matchPhoto = $("<img>");
+        matchPhoto.attr("src", friendsData.photo)
+
+        var matchScore = $("<h4>")
+        matchScore.text(friendsData.score)
+
+        $(".modal-body").append(matchName, matchPhoto, matchScore)
+
+     
+
+    });
+  }
+
+  friendResults()
 
 
 </script>
 
 
 </body>
+
+</html>
 
