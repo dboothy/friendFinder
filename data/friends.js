@@ -1,29 +1,29 @@
 var friendsArray = [
 
   {
-    name: "Drew",
-    photo: "https://i.pinimg.com/564x/c4/89/d6/c489d6a697a84abbe9835b16ee07c6b0.jpg",
-  	score: [1,2,3,4,3,2,4,2,1,1]
+    name: "Zain",
+    photo: "https://images.pexels.com/photos/896354/pexels-photo-896354.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb",
+  	score: [1,3,3,4,3,3,4,2,1,5]
   },
     {
-    name: "Farley",
-    photo: "https://www.pinterest.com/explore/images-of-happy-faces/",
-  	score: [1,2,3,4,3,2,4,2,1,1]
+    name: "Delorosa",
+    photo: "https://images.pexels.com/photos/57397/carnival-the-witch-mask-colorful-57397.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb",
+  	score: [3,2,3,2,2,2,4,4,4,1]
   },
   {
     name: "Boris",
-    photo: "https://www.what-dog.net/Images/faces2/scroll001.jpg",
-  	score: [1,2,3,4,3,2,4,2,1,1]
+    photo: "https://vignette.wikia.nocookie.net/jamesbond/images/6/64/Boris_Grishenko_%28Alan_Cumming%29_-_Profile.jpg/revision/latest?cb=20130507234057",
+  	score: [1,2,3,4,3,2,4,5,5,5]
   },
   {
-    name: "Bilal",
-    photo: "https://www.watchcartoononline.io/thumbs/Ed-Edd-n-Eddy-Season-1-Episode-6--Look-Into-My-Eds.jpg",
-  	score: [1,2,3,4,3,2,4,2,1,1]
+    name: "Bigel",
+    photo: "https://images.pexels.com/photos/53207/carnival-venice-eyes-mask-53207.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb",
+  	score: [4,2,3,4,4,2,4,2,3,4]
   },
   {
-    name: "Mary",
-    photo: "http://sanyangfrp.com/data/out/720/510994812-laughing-cartoon-face.jpg",
-  	score: [1,2,3,4,3,2,4,2,1,1]
+    name: "Morty",
+    photo: "https://images.pexels.com/photos/335690/pexels-photo-335690.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb",
+  	score: [4,2,3,2,3,5,4,5,4,5]
   }
 
 ];

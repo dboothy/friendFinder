@@ -1,3 +1,5 @@
+
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,7 @@
 
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" type="css" href="./assets/style.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
@@ -13,6 +16,7 @@
 <body>
 
   <form class="container">
+    <a href="/"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> Home!</button></a>
     <h2> Survey Questions </h2>
     <hr>
     <h3>
@@ -24,7 +28,7 @@
     <input type="text" id="photo" name="photo" class="form-control" required>
     <hr>
     <h3>
-      <strong>Question 1</strong>
+      <strong>How much do you like drawing? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
     <select class="chosen-select"  name= "q1" id="q1" style="">
@@ -36,9 +40,9 @@
       <option value="5">5 (Strongly Agree)</option>
     </select>
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q1_chosen"></div>
-<!-- 
+
     <h3>
-      <strong>Question 2</strong>
+      <strong>How much do you like to walk? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -53,7 +57,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q2_chosen"></div>
 
     <h3>
-      <strong>Question 3</strong>
+      <strong> How important are plants? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -68,7 +72,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q3_chosen"></div>
 
     <h3>
-      <strong>Question 4</strong>
+      <strong>What is your take on the quality of coffee these days? (5 good, 1 being bad)</strong>
     </h3>
     <h4> </h4>
 
@@ -83,7 +87,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q4_chosen"></div>
 
     <h3>
-      <strong>Question 5</strong>
+      <strong>How much do you like Star Wars? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -99,7 +103,7 @@
 
 
     <h3>
-      <strong>Question 6</strong>
+      <strong>What is the most you will drink on a night out? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -114,7 +118,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q6_chosen"></div>
 
         <h3>
-      <strong>Question 7</strong>
+      <strong>How much do you like driving? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -129,7 +133,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q7_chosen"></div>
 
         <h3>
-      <strong>Question 8</strong>
+      <strong>How much do you like music? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -144,7 +148,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q8_chosen"></div>
 
         <h3>
-      <strong>Question 9</strong>
+      <strong>How much do you like bowling? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -159,7 +163,7 @@
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q9_chosen"></div>
 
         <h3>
-    <strong>Question 10</strong>
+    <strong>How often do you like to travel? (5 being a lot, 1 being a little)</strong>
     </h3>
     <h4> </h4>
 
@@ -173,7 +177,7 @@
     </select>
     <div class="chosen-container chosen-container-single" style="width: 155px;" title id="q10_chosen"></div>
     <br>
-    <br> -->
+    <br>
   <button type="submit" data-toggle="modal" data-target="#results-modal" class="btn btn-primary btn-lg btn-block" id="submit">
     <i class="glyphicon glyphicon-check"></i>
   </button>
@@ -191,7 +195,7 @@
           <strong> Best Match</strong>
         </h2>
          </div>
-      <div class="modal-body">
+      <div id="modal-body">
 <!--         <h2 id = "match-name"></h2>
         <img id= "match-img"></div> -->
       </div>
@@ -228,7 +232,7 @@ function validateForm() {
 console.log(this)
 }
 
-$(".container").on("submit", function(event) {
+$(".container").one("submit", function(event) {
 event.preventDefault();
 
 
@@ -249,21 +253,94 @@ for(var i = 2; i < tempData.length; i++){
 
 };
 console.log(userData)
+fetch("/api/friends", {
+  method: "POST",
+  headers: {
+    "content-type": "application/json"
+  },
+  body: JSON.stringify(userData)
+})
+.then( function(response){
+  console.log(response)
+  return response.json()
+  // console.log(response)
+ })
+.then(function(data){
+  console.log(data)
+  var modal = $("#modal-body")
+  var name = $("<span>")
+  name.text(data.match.name)
+  var picture = $("<img>")
+  picture.attr("src", data.match.photo)
+  picture.css({
+    "height": "150px",
+    "width" : "150px"
+  })
+  var score = $("<p>")
+  score.text(data.match.score) 
+  modal.append(name, picture, score)
+  console.log(data.newUser)
+  name = $("<span>")
+  name.text(data.newUser.name)
+  picture = $("<img>")
+  picture.attr("src", data.newUser.photo)
+  picture.css({
+    "height": "150px",
+    "width" : "150px"
+  })
+  score = $("<p>")
+  score.text(data.newUser.score) 
+  modal.append(name, picture, score)
+ })
 
-$.post("/api/friends", JSON.stringify(userData), 
-  function(data){
+// $.post("/api/friends", JSON.stringify(userData), 
+//   function(data){
   
+//   console.log(data)
 
   // $("#match-name").text(data.name);
   // $("#match-img").attr("src", data.photo);
  
 
-  });
+  // });
 
 
 });
-  
 
+function compareScores (userScore, res){
+  var leastDiff;
+  var bestFriendIndex = 0;
+
+  for (var i = 0; i < friendsData.length; i++){
+    console.log(friendsData[i])
+    var friendScore = friendsData[i].score
+    var totalDiff = 0;
+    for(var j = 0; j <friendScore.length; j++){
+
+      var scoreA = parseInt(friendScore[j])
+      var scoreB = parseInt(userScore[j])
+      var currentDiff = Math.abs(scoreA - scoreB)
+      
+      totalDiff += currentDiff
+
+    }
+    if(i === 0){
+      console.log("firsttime")
+      leastDiff = totalDiff
+
+    }
+    console.log(leastDiff, totalDiff, "outsideIf") 
+    if(leastDiff > totalDiff){
+      console.log("totaldiff", totalDiff)
+      console.log(leastDiff, "leastDiff")
+      leastDiff = totalDiff
+      bestFriendIndex = i
+      console.log(i, "currentindex")
+      console.log(bestFriendIndex, "bestfriendindex")
+    }
+  }
+  
+}
   function friendResults() {
 
     
